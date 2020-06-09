@@ -7,10 +7,14 @@ class TodoList extends React.Component {
         return (
             <div>
                 {this.props.todos.map(todo => (
-                    <TodoItem key={todo.id} todo={todo} />
+                    <TodoItem 
+                        key={todo.id} 
+                        todo={todo}
+                        handleChangeProps={this.props.handleChangeProps}
+                    />
                 ))}
             </div>
-        )
-    }
+        );
+    };
 }
 export default TodoList;
