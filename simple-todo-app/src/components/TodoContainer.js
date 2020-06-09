@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoList from './TodoList';
-import Header from './Header'
+import Header from './Header';
+import InputTodo from './InputTodo';
 
 class TodoContainer extends React.Component {
     
@@ -36,13 +37,31 @@ class TodoContainer extends React.Component {
     };
 
     deleteTodo = id => {
-        console.log("deleted", id);
+        this.setState({
+            todos: [
+                ...this.state.todos.filter(todo => {
+                    return todo.id !== id;
+                })
+            ]
+        });
+    };
+
+    addTodoItem = title => {
+        const newTodo = {
+            id: 4,
+            title: title,
+            completed: false,
+        };
+        this.setState({
+            todos: [...this.state.todos, newTodo]
+        });
     };
 
     render() {
         return (
             <div>
             <Header />
+            <InputTodo addTodoProps={this.addTodoItem} />
             <TodoList
             todos={this.state.todos}
             handleChangeProps={this.handleChange}
