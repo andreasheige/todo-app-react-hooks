@@ -3,19 +3,20 @@ import React, { Component } from 'react';
 class InputTodo extends Component {
     
     state = {
-        titile: ""
+        title: ""
     };
-
+    // Instead of having multiple methods to handle different input fields
     onChange = e => {
         this.setState({
             [e.target.name]: e.target.value
         });
     };
+    // Save todo
     handleSubmit = e => {
         e.preventDefault();
-        this.props.addTodoProps(this.state.titile);
+        this.props.addTodoProps(this.state.title);
         this.setState({
-            titile: ""
+            title: ""
         });
     };
 

@@ -24,7 +24,7 @@ class TodoContainer extends React.Component {
             },
         ],
     };
-    
+    // Todo is Active / Completed
     handleChange = id => {
         this.setState({
             todos: this.state.todos.map(todo => {
@@ -35,7 +35,7 @@ class TodoContainer extends React.Component {
             })
         });
     };
-
+    // Delete todo
     deleteTodo = id => {
         this.setState({
             todos: [
@@ -45,7 +45,7 @@ class TodoContainer extends React.Component {
             ]
         });
     };
-
+    // Add new todo
     addTodoItem = title => {
         const newTodo = {
             id: 4,
