@@ -2,7 +2,7 @@ import React from 'react';
 import TodoList from './TodoList';
 import Header from './Header';
 import InputTodo from './InputTodo';
-import { v4 as uuid4 } from "uuid";
+import { v4 as uuid4 } from "uuid"; // Generates unique id´s 
 
 class TodoContainer extends React.Component {
     
@@ -60,7 +60,7 @@ class TodoContainer extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
             <Header />
             <InputTodo addTodoProps={this.addTodoItem} />
             <TodoList
