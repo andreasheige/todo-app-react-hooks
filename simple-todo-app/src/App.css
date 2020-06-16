@@ -53,12 +53,14 @@ body {
     list-style-type: none;
     padding: 17px 0px;
 }
+
 .todo-item input {
     margin-right: 15px;
 }
 
 .todo-item button {
-    background: #f25e3f;
+    background: #f4f4f4;
+    box-shadow: 1px 2px 2px black;
     color: fff;
     border: 1px solid black;
     padding: 3px 7px;
