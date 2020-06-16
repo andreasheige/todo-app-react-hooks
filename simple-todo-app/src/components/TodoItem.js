@@ -4,6 +4,7 @@ class TodoItem extends React.Component {
 
     render() {
 
+        // Style for completed TODOs
         const completedStyle = {
             fontStyle: "italic",
             color: "#d35e0f",
