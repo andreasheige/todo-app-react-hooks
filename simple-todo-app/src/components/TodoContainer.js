@@ -9,6 +9,7 @@ class TodoContainer extends React.Component {
     
     state = {
         todos: [],
+        show: false
     };
     // Todo is Active / Completed
     handleChange = id => {
@@ -18,11 +19,12 @@ class TodoContainer extends React.Component {
                     todo.completed = !todo.completed;
                 }
                 return todo;
-            })
+            }),
+            show: !this.state.show,
         });
     };
     // Delete todo
-    deleteTodo = id => {
+    deleteTodo = (id) => {
         axios
         .delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
         .then(response => this.setState({
@@ -36,7 +38,7 @@ class TodoContainer extends React.Component {
     };
 
     // Add new todo
-    addTodoItem = title => {
+    addTodoItem = (title) => {
         axios
             .post("https://jsonplaceholder.typicode.com/todos", {
                 id: uuid.v4(),
@@ -58,7 +60,7 @@ class TodoContainer extends React.Component {
     render() {
         return (
             <div className="container">
-            <Header />
+            <Header headerSpan={this.state.show}/>
             <InputTodo addTodoProps={this.addTodoItem} />
             <TodoList
             todos={this.state.todos}

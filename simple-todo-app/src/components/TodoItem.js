@@ -2,6 +2,10 @@ import React from 'react';
 
 class TodoItem extends React.Component {
 
+    componentWillUnmount() {
+        alert("Item is about to be deleted!!!");
+    }
+
     render() {
 
         // Style for completed TODOs
@@ -12,9 +16,10 @@ class TodoItem extends React.Component {
             textDecoration: "line-through",
         }
 
-        const { completed, id, title } = this.props.todo
+        const { completed, id, title } = this.props.todo;
         
-    return <li className="todo-item">
+    return (
+            <li className="todo-item">
             <input  type="checkbox" 
                     checked={completed}
                     onChange={() => this.props.handleChangeProps(id)}
@@ -26,6 +31,7 @@ class TodoItem extends React.Component {
                 {title}
             </span>
             </li>
+            )
     };
 }
 
