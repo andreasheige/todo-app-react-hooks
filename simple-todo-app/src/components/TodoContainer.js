@@ -1,29 +1,14 @@
 import React from 'react';
 import TodoList from './TodoList';
-import Header from './Header';
-import InputTodo from './InputTodo';
-import { v4 as uuid4 } from "uuid"; // Generates unique id´s 
+import Header from './layout/Header';
+import InputTodo from './AddTodo';
+import uuid from "uuid";
+import axios from 'axios';
 
 class TodoContainer extends React.Component {
     
     state = {
-        todos: [
-            {
-                id: uuid4(),
-                title: "Default 1",
-                completed: true,
-            },
-            {
-                id: uuid4(),
-                title: "Default 2",
-                completed: true,
-            },
-            {
-                id: uuid4(),
-                title: "Default 3",
-                completed: false,
-            },
-        ],
+        todos: [],
     };
     // Todo is Active / Completed
     handleChange = id => {
@@ -38,24 +23,36 @@ class TodoContainer extends React.Component {
     };
     // Delete todo
     deleteTodo = id => {
-        this.setState({
+        axios
+        .delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+        .then(response => this.setState({
             todos: [
                 ...this.state.todos.filter(todo => {
-                    return todo.id !== id;
-                })
-            ]
-        });
+                    return todo.id !== id
+                }),
+            ],
+        })
+        )
     };
+
     // Add new todo
     addTodoItem = title => {
-        const newTodo = {
-            id: uuid4(),
-            title: title,
-            completed: false,
-        };
-        this.setState({
-            todos: [...this.state.todos, newTodo]
-        });
+        axios
+            .post("https://jsonplaceholder.typicode.com/todos", {
+                id: uuid.v4(),
+                title: title,
+                completed: false,
+            })
+        .then(response =>
+            this.setState({
+                todos: [...this.state.todos, response.Data],
+        })
+        )
+    };
+    //  API Request of "fake-todos"
+    componentDidMount() {
+        axios.get("https://jsonplaceholder.typicode.com/todos?_limit=10")
+            .then(response => this.setState({ todos: response.data }));
     };
 
     render() {
