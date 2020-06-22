@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 
 class Header extends Component {
 
+    // BG for clicked in GUI.
     componentDidUpdate(prevProps, prevState) {
 
         let x = Math.floor(Math.random() * 256);
         let y = Math.floor(Math.random() * 256);
         let z = Math.floor(Math.random() * 256);
         let bgColor = "rgb(" + x + "," + y + "," + z + ")";
-
+        // When clicked 
         if (prevProps.headerSpan !== this.props.headerSpan) {
             document.getElementById("inH1").innerHTML = "clicked";
             document.getElementById("inH1").style.backgroundColor = bgColor;

@@ -5,7 +5,7 @@ import InputTodo from './AddTodo';
 import uuid from "uuid";
 import axios from 'axios';
 
-class TodoContainer extends React.Component {
+class TodoApp extends React.Component {
     
     state = {
         todos: [],
@@ -24,44 +24,38 @@ class TodoContainer extends React.Component {
         });
     };
     // Delete todo
-    deleteTodo = (id) => {
-        axios
-        .delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
-        .then(response => this.setState({
+    deleteTodo = id => {
+        this.setState({
             todos: [
                 ...this.state.todos.filter(todo => {
-                    return todo.id !== id
-                }),
-            ],
-        })
-        )
+                    return todo.id !== id;
+                })
+            ]
+        });
     };
 
     // Add new todo
-    addTodoItem = (title) => {
-        axios
-            .post("https://jsonplaceholder.typicode.com/todos", {
-                id: uuid.v4(),
-                title: title,
-                completed: false,
-            })
-        .then(response =>
-            this.setState({
-                todos: [...this.state.todos, response.Data],
-        })
-        )
+    addTodo = title => {
+        const newTodo = {
+            id: uuid.v4(),
+            title: title,
+            completed: false
+        };
+        this.setState({
+            todos: [...this.state.todos, newTodo]
+        });
     };
     //  API Request of "fake-todos"
     componentDidMount() {
-        axios.get("https://jsonplaceholder.typicode.com/todos?_limit=10")
+        axios.get("https://jsonplaceholder.typicode.com/todos?_limit=5")
             .then(response => this.setState({ todos: response.data }));
     };
 
     render() {
         return (
             <div className="container">
-            <Header headerSpan={this.state.show}/>
-            <InputTodo addTodoProps={this.addTodoItem} />
+            <Header headerSpan={this.state.show} />
+            <InputTodo addTodoProps={this.addTodo} />
             <TodoList
             todos={this.state.todos}
             handleChangeProps={this.handleChange}
@@ -72,4 +66,4 @@ class TodoContainer extends React.Component {
     }
 }
 
-export default TodoContainer;
+export default TodoApp;
