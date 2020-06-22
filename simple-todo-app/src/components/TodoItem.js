@@ -5,7 +5,7 @@ const TodoItem = props =>  {
       // Style for completed TODOs
       const completedStyle = {
         fontStyle: "italic",
-        color: "#d35e0f",
+        color: "#ffe8f6",
         opacity: 0.4,
         textDecoration: "line-through",
     };

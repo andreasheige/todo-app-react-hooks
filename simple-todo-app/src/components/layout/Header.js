@@ -26,10 +26,10 @@ const Header = props => {
 
     return (
         <header style={headerStyle}>
-            <h1 style={{ fontSize: "25px", marginBottom: "15px" }}>
+            <h1 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "15px" }}>
                 Simple Todo Application <span id="inH1"></span>
             </h1>
-            <p style={{ fontSize: "1.2rem" }}>
+            <p style={{ fontSize: "1.4rem", opacity: "0.5" }}>
                 Add new todo/s thru the input field...
             </p>
         </header>
